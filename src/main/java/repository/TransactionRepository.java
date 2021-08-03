@@ -51,10 +51,10 @@ public class TransactionRepository {
     }
 
     public String getMonthlyNumberOfTransactions() {
-        Map<Month, List<Transaction>> monthlyNumberOfTransactions = transactions.stream().collect(Collectors.groupingBy(t -> t.getDate().getMonth()));
+        Map<String, List<Transaction>> monthlyNumberOfTransactions = transactions.stream().collect(Collectors.groupingBy(transaction -> String.valueOf(transaction.getDate().getMonth().getValue() + "-" + transaction.getDate().getYear())));
         String text = "Miesięczna suma kwot transakcji:\n";
 
-        for (Map.Entry<Month, List<Transaction>> entry : monthlyNumberOfTransactions.entrySet()) {
+        for (Map.Entry<String, List<Transaction>> entry : monthlyNumberOfTransactions.entrySet()) {
             text = text.concat(entry.getKey() + "\t" + entry.getValue().stream().count() + "\n");
         }
         return text;
