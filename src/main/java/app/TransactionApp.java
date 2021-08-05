@@ -9,7 +9,7 @@ import java.time.format.DateTimeParseException;
 
 public class TransactionApp {
     public static void main(String[] args) {
-        String fileName = "src/main/resources/transactions.txt";
+        String fileName = "transactions.txt";
         File file = new File(fileName);
         try {
             TransactionRepository repository = TransactionRepository.of(fileName);
